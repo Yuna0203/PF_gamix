@@ -1,0 +1,2 @@
+module Customer::BookmarkHelper
+end
