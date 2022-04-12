@@ -8,7 +8,7 @@
 
   <%# ジャンル・プラットフォーム追加 %>
 
-  <p class="py-2">価格：¥<%= @game.price %></p>
+  <p class="py-2">価格：¥<%= @game.price.to_s(:delimited) %></p>
 
   <%# レビュー追加 %>
 
