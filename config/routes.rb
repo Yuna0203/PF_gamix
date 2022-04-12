@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:index, :show, :edit]
-    resources :platforms, only: [:index, :edit]
+    resources :platforms, only: [:index, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :games, only: [:index, :new, :show, :edit]
   end

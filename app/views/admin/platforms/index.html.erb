@@ -1,2 +1,24 @@
-<h1>Admin::Platform#index</h1>
-<p>Find me in app/views/admin/platform/index.html.erb</p>
+<div class="offset-2">
+  <h2>プラットフォーム一覧・追加</h2>
+
+  <%# 新規プラットフォーム追加フォーム %>
+  <%= form_with model: @platform, url: admin_platforms_path, method: :post, class: "py-5", local: true do |f| %>
+
+    <%= f.label :プラットフォーム名 %>
+    <%= f.text_field :platform_name %>
+    <%= f.submit "プラットフォームを追加", class: "btn btn-success offset-1" %>
+
+  <% end %>
+
+  <%# プラットフォーム一覧 %>
+  <table class="table col-md-8">
+    <tbody>
+      <% @platforms.each do |platform| %>
+      <tr>
+        <td class="text-white"><%= platform.platform_name %></td>
+        <td><%= link_to "編集", edit_admin_platform_path(platform.id), class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

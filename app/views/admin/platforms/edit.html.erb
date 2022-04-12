@@ -1,2 +1,10 @@
-<h1>Admin::Platform#edit</h1>
-<p>Find me in app/views/admin/platform/edit.html.erb</p>
+<div class="offset-2">
+  <h2>プラットフォーム編集</h2>
+
+  <%= form_with model: @genre, url: admin_platform_path, method: :patch, class: "py-5", local: true do |f| %>
+    <%= f.label :プラットフォーム名 %>
+    <%= f.text_field :platform_name %>
+    <%= f.submit "更新", class: "btn btn-success offset-1" %>
+    <%= link_to "削除", admin_platform_path(@platform), method: :delete, class: "btn btn-danger offset-1", "data-confirm" => "本当に削除しますか？" %>
+  <% end %>
+</div>
