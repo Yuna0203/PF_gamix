@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :quit, :edit]
     resources :comments, only: [:new, :edit]
     resources :reviews, only: [:new, :show, :edit]
-    resources :games, only: [:index, :show, :new]
+    resources :games, only: [:index, :show, :new, :create]
     resources :searches, only: [:search]
   end
   root to: "customer/homes#top"

@@ -1,1 +1,24 @@
-#ゲーム投稿画面作るところから
+<%= form_with model: @game, url: customer_games_path do |f| %>
+
+  <div class="offset-3">
+
+    <%= f.file_field :game_image, accept: "image/*", class: "pb-4" %>
+
+  <div class="form-group">
+    <%= f.label :タイトル %><br>
+    <%= f.text_field :game_name, class: "w-75" %>
+  </div>
+
+  <div class="form-group py-3">
+    <%= f.label :ゲーム説明 %><br>
+    <%= f.text_area :game_introduction, class: "w-75" %>
+  </div>
+
+  <%= f.label :価格 %><br>
+  <%= f.text_field :price, placeholder: "○○○○円" %>
+
+  <%= f.submit 'ゲームを追加', class: "btn btn-lg btn-outline-light offset-4" %>
+
+  </div>
+
+<% end %>
