@@ -9,10 +9,11 @@ class Customer::GamesController < ApplicationController
     redirect_to customer_game_path(game.id)
   end
 
-  def index
+  def show
+    @game = Game.find(params[:id])
   end
 
-  def show
+  def index
   end
 
   private

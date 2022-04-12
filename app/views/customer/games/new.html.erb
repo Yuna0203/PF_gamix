@@ -15,10 +15,12 @@
   </div>
 
   <%= f.label :価格 %><br>
-  <%= f.text_field :price, placeholder: "○○○○円" %>
+  <%= f.text_field :price, placeholder: "半角数字のみ入力" %>
 
   <%= f.submit 'ゲームを追加', class: "btn btn-lg btn-outline-light offset-4" %>
 
   </div>
+
+  <%# ジャンル・プラットフォーム追加する %>
 
 <% end %>

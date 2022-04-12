@@ -1,2 +1,15 @@
-<h1>Customer::Games#show</h1>
-<p>Find me in app/views/customer/games/show.html.erb</p>
+<div>
+
+  <%= image_tag @game.game_image %>
+
+  <h2 class="py-3"><%= @game.game_name %></h2>
+
+  <%= @game.game_introduction %>
+
+  <%# ジャンル・プラットフォーム追加 %>
+
+  <p class="py-2">価格：¥<%= @game.price %></p>
+
+  <%# レビュー追加 %>
+
+</div>
