@@ -1,2 +1,21 @@
-<h1>Customer::Reviews#new</h1>
-<p>Find me in app/views/customer/reviews/new.html.erb</p>
+<div>
+  <%= form_with  model: [@game, @review], url: customer_game_reviews_path, method: :post, local: true do |f| %>
+  <div class="form-group row" id="star">
+    <%= f.label :evaluation,'評価 ', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :evaluation, id: :review %>
+  </div>
+
+  <!-- 評価javascript -->
+  <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+
+    scoreName: 'review[evaluation]',
+    half: false,
+  });
+  </script>
+
+  <% end %>
+</div>

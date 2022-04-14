@@ -18,6 +18,8 @@
 
   <p>価格：¥<%= @game.price.to_s(:delimited) %></p>
 
+  <i class="fas fa-pen"></i><%= link_to "レビューを書く", new_customer_game_review_path %>
+
   <%# レビュー追加 %>
 
 </div>

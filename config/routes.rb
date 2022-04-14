@@ -6,13 +6,13 @@ Rails.application.routes.draw do
     sessions: "customer/sessions"
   }
 
-
   namespace :customer do
     resources :bookmarks, only: [:index]
     resources :customers, only: [:show, :quit, :edit]
     resources :comments, only: [:new, :edit]
-    resources :reviews, only: [:new, :show, :edit]
-    resources :games, only: [:index, :show, :new, :create]
+    resources :games, only: [:index, :show, :new, :create] do
+      resources :reviews, only: [:new, :show, :edit, :create]
+    end
     resources :searches, only: [:search]
   end
   root to: "customer/homes#top"
