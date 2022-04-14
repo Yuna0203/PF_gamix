@@ -14,13 +14,27 @@
     <%= f.text_area :game_introduction, class: "w-75" %>
   </div>
 
-  <%= f.label :価格 %><br>
+<table>
+  <tbody>
+      <tr>
+        <td><%= f.label :ジャンル %></td>
+        <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, prompt: "--選択して下さい--", class: 'form-control' %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :対応プラットフォーム %></td>
+        <td><%= f.collection_select :platform_id, Platform.all, :id, :platform_name, prompt: "--選択して下さい--", class: 'form-control' %></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <%= f.label :価格, class: "pt-4" %><br>
   <%= f.text_field :price, placeholder: "半角数字のみ入力" %>
 
   <%= f.submit 'ゲームを追加', class: "btn btn-lg btn-outline-light offset-4" %>
 
   </div>
 
-  <%# ジャンル・プラットフォーム追加する %>
 
 <% end %>

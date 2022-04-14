@@ -1,7 +1,7 @@
 <div class="offset-2">
   <h2>プラットフォーム編集</h2>
 
-  <%= form_with model: @genre, url: admin_platform_path, method: :patch, class: "py-5", local: true do |f| %>
+  <%= form_with model: @platform, url: admin_platform_path, method: :patch, class: "py-5", local: true do |f| %>
     <%= f.label :プラットフォーム名 %>
     <%= f.text_field :platform_name %>
     <%= f.submit "更新", class: "btn btn-success offset-1" %>

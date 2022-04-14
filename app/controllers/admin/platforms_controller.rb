@@ -28,6 +28,6 @@ class Admin::PlatformsController < ApplicationController
 
   private
   def platform_params
-    params.require(:platform).permit(:platform_name) #ここエラー出るから質問する
+    params.require(:platform).permit(:platform_name)
   end
 end
