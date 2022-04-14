@@ -25,6 +25,11 @@
         <td><%= f.label :対応プラットフォーム %></td>
         <td><%= f.collection_select :platform_id, Platform.all, :id, :platform_name, prompt: "--選択して下さい--", class: 'form-control' %></td>
       </tr>
+
+      <tr>
+        <td><%= f.label :対象年齢 %></td>
+        <td><%= f.collection_select :target_age_id, TargetAge.all, :id, :target_age, prompt: "--選択して下さい--", class: 'form-control' %></td>
+      </tr>
     </tbody>
   </table>
 

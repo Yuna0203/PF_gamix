@@ -2,7 +2,7 @@ class Game < ApplicationRecord
 
   belongs_to :platform
   belongs_to :genre
-  belongs_to :target_
+  belongs_to :target_age
 
   #ゲーム画像のカラム
   has_one_attached :game_image

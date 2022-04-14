@@ -4,11 +4,19 @@
 
   <h2 class="py-3"><%= @game.game_name %></h2>
 
-  <%= @game.game_introduction %>
+  <div class="border-bottom border-light border-3">
+  <p><%= @game.game_introduction %></p>
+  </div>
 
-  <%# ジャンル・プラットフォーム追加 %>
+  <div class="py-3">
+    <div class="d-inline-flex font-weight-bold">ジャンル：<%= @game.genre.genre_name %></div>
 
-  <p class="py-2">価格：¥<%= @game.price.to_s(:delimited) %></p>
+    <div class="d-inline-flex offset-1 font-weight-bold">プラットフォーム：<%= @game.platform.platform_name %></div>
+
+    <div class="d-inline-flex offset-1 font-weight-bold">対象年齢：<%= @game.target_age.target_age %></div>
+  </div>
+
+  <p>価格：¥<%= @game.price.to_s(:delimited) %></p>
 
   <%# レビュー追加 %>
 
