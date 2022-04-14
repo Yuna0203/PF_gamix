@@ -1,0 +1,24 @@
+<div class="offset-3">
+  <h2>対象年齢追加・一覧</h2>
+
+  <%# 新規対象年齢追加フォーム %>
+  <%= form_with model: @target_age, url: admin_target_ages_path, method: :post, class: "py-5", local: true do |f| %>
+
+    <%= f.label :対象年齢 %>
+    <%= f.text_field :target_age %>
+    <%= f.submit "対象年齢を追加", class: "offset-1 btn btn-outline-light" %>
+
+  <% end %>
+
+  <%# 対象年齢一覧 %>
+  <table class="table col-md-8">
+    <tbody>
+      <% @target_ages.each do |target_age| %>
+        <tr>
+          <td class="text-white"><%= target_age.target_age %></td>
+          <td><%= link_to "編集", edit_admin_target_age_path(target_age.id), class: "btn btn-success" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

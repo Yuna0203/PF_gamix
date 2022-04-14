@@ -1,0 +1,11 @@
+<div class="offset-3">
+  <h2>対象年齢編集</h2>
+
+  <%= form_with model: @target_age, url: admin_target_age_path(@target_age), method: :patch, class: "py-5", local: true do |f| %>
+    <%= f.label :対象年齢 %>
+    <%= f.text_field :target_age %>
+    <%= f.submit "更新", class: "btn btn-success offset-1" %>
+    <%= link_to "削除", admin_target_age_path(@target_age), method: :delete, class: "btn btn-danger offset-1", "data-confirm" => "本当に削除しますか？" %>
+  <% end %>
+
+</div>

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit]
     resources :platforms, only: [:index, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
+    resources :target_ages, only: [:index, :edit, :create, :update, :destroy]
     resources :games, only: [:index, :new, :show, :edit]
   end
 
