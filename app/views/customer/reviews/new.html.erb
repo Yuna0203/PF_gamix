@@ -1,21 +1,38 @@
-<div>
+<div class="offset-4">
+  <h4 class="pb-2"><%= @game.game_name %>のレビューを書く</h4>
   <%= form_with  model: [@game, @review], url: customer_game_reviews_path, method: :post, local: true do |f| %>
-  <div class="form-group row" id="star">
-    <%= f.label :evaluation,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :evaluation, id: :review %>
-  </div>
 
-  <!-- 評価javascript -->
-  <script>
-  $('#star').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
+    <!-- 評価javascript -->
+    <div class="field" id="star">
+      <%= f.label :evaluation, "評価：" %>
+      <%= f.hidden_field :evaluation, id: :review_star %>
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[evaluation]',
+          half: true,
+        });
+      </script>
+    </div>
 
-    scoreName: 'review[evaluation]',
-    half: false,
-  });
-  </script>
+    <div>
+      <div class="form-group py-4">
+        <%= f.label :レビュータイトル %><br>
+        <%= f.text_field :review_title, class: "w-50" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :本文 %><br>
+        <%= f.text_area :review, rows: '5', class: "w-50" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "レビューを送信", class: "btn btn-outline-light btn-lg" %>
+      </div>
+    </div>
 
   <% end %>
 </div>

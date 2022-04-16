@@ -6,9 +6,10 @@ class Customer::ReviewsController < ApplicationController
 
   def create
     game = Game.find(params[:game_id])
-    review = current_user.reviews.new(game_params)
+    review = current_customer.reviews.new(review_params)
     review.game_id = game.id
-    redirect_to customer_game_review_path(game)
+    review.save
+    redirect_to customer_game_review_path(game.id, review.id)
   end
 
   def show
@@ -19,7 +20,7 @@ class Customer::ReviewsController < ApplicationController
 
   private
 
-  def game_params
+  def review_params
     params.require(:review).permit(:evaluation, :review_title, :review)
   end
 end
