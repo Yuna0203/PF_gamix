@@ -1,2 +1,41 @@
-<h1>Customer::Customers#show</h1>
-<p>Find me in app/views/customer/customers/show.html.erb</p>
+<div>
+  <!-- ユーザーの詳細 -->
+  <div class="border-bottom pb-3 mb-5">
+    <%= image_tag @customer.get_profile_image(100,100) %>
+    <div class="d-inline-flex pl-3 font-weight-bold">
+      <%= @customer.nickname %>
+    </div>
+    <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-outline-light offset-5" %>
+    <%# 退会 %>
+    <div class="mt-2">
+      <%= @customer.self_introduction %>
+    </div>
+  </div>
+
+  <%# レビュー一覧、ブックマーク一覧 %>
+
+  <!-- ユーザープロフィール -->
+  <div class="mb-5">
+    <span class="bg-secondary p-2">プロフィール</span>
+    <div class="my-3">
+      性別：<%= @customer.gender %><br>
+      年齢：<%= @customer.age %>
+    </div>
+  </div>
+
+  <!-- ゲームスタイル -->
+  <div class="mb-5">
+    <span class="bg-secondary p-2">ゲームスタイル</span>
+    <div class="my-3">
+      <%= @customer.game_style %>
+    </div>
+  </div>
+
+  <!-- プロフィール編集へ -->
+  <div>
+    <%= link_to "プロフィールを編集", edit_customer_customer_path, class: "btn btn-lg btn-outline-light" %>
+  </div>
+
+
+
+</div>

@@ -13,6 +13,8 @@ class Customer::ReviewsController < ApplicationController
   end
 
   def show
+    @game = Game.find(params[:game_id])
+    @review = Review.find(params[:id])
   end
 
   def edit

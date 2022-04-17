@@ -1,2 +1,58 @@
-<h1>Customer::Customers#edit</h1>
-<p>Find me in app/views/customer/customers/edit.html.erb</p>
+<div class="offset-2">
+  <h3 class="mb-5 font-weight-bold">プロフィール設定</h3>
+
+  <%= form_with model: @customer, url: customer_customer_path(current_customer), method: :patch do |f| %>
+    <div class="mb-5">
+      <span class="bg-secondary p-2">プロフィール画像</span>
+      <div class="my-3">
+        <%= image_tag @customer.get_profile_image(100,100) %>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <span class="bg-secondary p-2">ニックネーム <span class="bg-danger px-1">必須</span></span>
+      <div class="my-3">
+        <%= f.text_field :nickname, class: "w-50" %>
+      </div>
+    </div>
+
+    <div>
+      <span class="bg-secondary p-2">自己紹介文</span>
+      <div class="my-3">
+        <%= f.text_area :self_introduction, rows: '5', class: "w-75" %>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <table>
+        <tbody>
+          <tr>
+            <td>性別：</td>
+            <td><%= f.select :gender, {'未設定': 1, '男性': 2, '女性': 3, 'その他': 4}, { class: 'form-control' , required: true } %></td>
+          </tr>
+
+          <tr>
+            <td>年齢：</td>
+            <td><%= f.text_field :age, size: "4x20" %>歳</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mb-5">
+      <span class="bg-secondary p-2">ゲームスタイル</span>
+      <div class="my-3">
+        <p>好きなゲームのジャンルやプレイスタイルを記入してください。<br>
+        例）アクションゲーム好き,エンジョイ勢</p>
+        <%= f.text_field :game_style, class: "w-75" %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.submit "プロフィールを更新", class: "btn btn-lg btn-outline-light" %>
+    </div>
+
+
+  <% end %>
+</div>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :customer do
     resources :bookmarks, only: [:index]
-    resources :customers, only: [:show, :quit, :edit]
+    resources :customers, only: [:show, :quit, :edit, :update]
     resources :comments, only: [:new, :edit]
     resources :games, only: [:index, :show, :new, :create] do
       resources :reviews, only: [:new, :show, :edit, :create]
