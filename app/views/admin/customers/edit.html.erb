@@ -1,2 +1,43 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div>
+  <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+    <div>
+      <%= f.label :プロフィール画像 %><br>
+      <%= image_tag @customer.get_profile_image(100,100) %>
+      <%= f.file_field :profile_image, accept: "image/*" %>
+    </div>
+
+    <div class="my-4">
+      <%= f.label :ニックネーム %><br>
+      <%= f.text_field :nickname, class: "w-50" %>
+    </div>
+
+    <div>
+      <%= f.label :メールアドレス %><br>
+      <%= f.text_field :email, class: "w-50" %>
+    </div>
+
+    <div class="my-4">
+      <%= f.label :自己紹介文 %><br>
+      <%= f.text_area :self_introduction, rows: "5", class: "w-50" %>
+    </div>
+
+    <div>
+      <%= f.label :性別： %>
+      <%= f.select :gender, {'未設定': 1, '男性': 2, '女性': 3, 'その他': 4}, { class: 'form-control' , required: true } %>
+    </div>
+
+    <div>
+      <%= f.label :年齢： %>
+      <%= f.text_field :age, size: "4×20" %>歳
+    </div>
+
+    <div class="my-4">
+      <%= f.label :ゲームスタイル %><br>
+      <%= f.text_field :game_style, class: "w-50" %>
+    </div>
+
+    <div>
+      <%= f.submit "更新", class: "btn btn-lg btn-success w-25" %>
+    </div>
+  <% end %>
+</div>

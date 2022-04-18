@@ -7,6 +7,7 @@
     </div>
     <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-outline-light offset-5" %>
     <%# 退会 %>
+    <%= link_to "退会する", customer_quit_path(current_customer), method: :patch, class: 'btn btn-danger', "data-confilm" => "本当に退会しますか？" %>
     <div class="mt-2">
       <%= @customer.self_introduction %>
     </div>

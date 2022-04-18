@@ -1,0 +1,9 @@
+<% if review.favorited_by?(current_customer) %>
+      <%= link_to customer_game_review_favorites_path(review), method: :delete, class: "text-danger", remote: true do %>
+        ♥共感！（共感<%= review.favorites.count %>件）
+      <% end %>
+      <% else %>
+      <%= link_to customer_game_review_favorites_path(review), method: :post, remote: true do %>
+        ♡共感！（共感<%= review.favorites.count %>件）
+      <% end %>
+    <% end %>

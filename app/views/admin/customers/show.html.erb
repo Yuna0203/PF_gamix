@@ -1,2 +1,40 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div>
+  <div>
+    <span class="bg-secondary p-2">プロフィール画像</span>
+    <div class="py-3"><%= image_tag @customer.get_profile_image(100,100) %></div>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">ニックネーム</span>
+    <p class="py-3"><%= @customer.nickname %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">メールアドレス</span>
+    <p class="py-3"><%= @customer.email %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">自己紹介文</span>
+    <p class="py-3"><%= @customer.self_introduction %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">性別</span>
+    <p class="py-3"><%= @customer.gender %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">年齢</span>
+    <p class="py-3"><%= @customer.age %>歳</p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">ゲームスタイル</span>
+    <p class="py-3"><%= @customer.game_style %></p>
+  </div>
+
+  <div>
+    <%= link_to "編集", edit_admin_customer_path(@customer), class: "btn btn-lg btn-success w-25" %>
+  </div>
+</div>

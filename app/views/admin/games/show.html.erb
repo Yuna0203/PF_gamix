@@ -1,2 +1,39 @@
-<h1>Admin::Games#show</h1>
-<p>Find me in app/views/admin/games/show.html.erb</p>
+<div>
+  <div>
+    <%= image_tag @game.get_game_image %>
+  </div>
+
+  <div class="mt-3">
+    <span class="bg-secondary p-2">ゲームタイトル</span>
+    <p class="py-3"><%= @game.game_name %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">ゲーム説明文</span>
+    <p class="py-3"><%= @game.game_introduction %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">対応プラットフォーム</span>
+    <p class="py-3"><%= @game.platform.platform_name %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">ジャンル</span>
+    <p class="py-3"><%= @game.genre.genre_name %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">対象年齢</span>
+    <p class="py-3"><%= @game.target_age.target_age %></p>
+  </div>
+
+  <div>
+    <span class="bg-secondary p-2">価格</span>
+    <p class="py-3">¥<%= @game.price.to_s(:delimited) %></p>
+  </div>
+
+  <div class="mb-5">
+    <%= link_to "編集", edit_admin_game_path(@game), class: "btn btn-success w-25" %>
+  </div>
+</div>

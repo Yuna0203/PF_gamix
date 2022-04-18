@@ -15,12 +15,17 @@ class Customer::CustomersController < ApplicationController
   end
 
   def quit
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております"
+    redirect_to new_customer_session_path
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:nickname, :self_introduction, :profile_image, :gender, :age, :game_style)
+    params.require(:customer).permit(:nickname, :self_introduction, :profile_image, :gender, :age, :game_style, :is_deleted)
   end
 
 

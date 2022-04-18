@@ -1,2 +1,46 @@
-<h1>Admin::Games#edit</h1>
-<p>Find me in app/views/admin/games/edit.html.erb</p>
+<div>
+  <%= form_with model: @game, url: admin_game_path, method: :patch do |f| %>
+    <div class="mb-3">
+      <%= f.label :ゲーム画像 %><br>
+      <%= image_tag @game.get_game_image, size: "200x134" %>
+      <%= f.file_field :game_image, accept: "image/*", class: "pb-4" %>
+    </div>
+
+      <div class="form-group">
+        <%= f.label :ゲームタイトル %><br>
+        <%= f.text_field :game_name, class: "w-75" %>
+      </div>
+
+      <div class="form-group py-3">
+        <%= f.label :ゲーム説明文 %><br>
+        <%= f.text_area :game_introduction, rows: '5', class: "w-75" %>
+      </div>
+
+      <table>
+        <tbody>
+          <tr>
+            <td><%= f.label :ジャンル %></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, prompt: "--選択して下さい--", class: 'form-control' %></td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :対応プラットフォーム %></td>
+            <td><%= f.collection_select :platform_id, Platform.all, :id, :platform_name, prompt: "--選択して下さい--", class: 'form-control' %></td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :対象年齢 %></td>
+            <td><%= f.collection_select :target_age_id, TargetAge.all, :id, :target_age, prompt: "--選択して下さい--", class: 'form-control' %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <%= f.label :価格, class: "pt-4" %><br>
+      <%= f.text_field :price, placeholder: "半角数字のみ入力" %>
+
+      <div class="mt-3">
+        <%= f.submit '更新', class: "btn btn-lg btn-success w-25" %>
+        <%= link_to '削除', admin_game_path(@game), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-lg btn-danger w-25 offset-1" %>
+      </div>
+  <% end %>
+</div>
