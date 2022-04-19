@@ -1,43 +1,50 @@
 <div>
-  <%= link_to customer_game_path(@game), class: "h3" do %>
-    <%= @game.game_name %>
-  <% end %>
+  <div>
+    <%= link_to customer_game_path(@game), class: "h3" do %>
+      <%= @game.game_name %>
+    <% end %>
+  </div>
 
-  <div class="pt-5">
+
+  <div class="pt-5 d-inline-flex">
     <%= image_tag @review.customer.get_profile_image(100,100) %>
   </div>
 
-  <%# 星評価 %>
-  <div class="relative-post-evaluation">
-    <span id="star-rate-<%= @review.id %>"></span>
-    <script>
-      $('#star-rate-<%= @review.id %>').raty({
-        size: 36,
-        starOff: "<%= asset_path('star-off.png') %>",
-        starOn: "<%= asset_path('star-on.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        half: true,
-        readOnly: true,
-        score: <%= @review.evaluation %>,
-      });
-    </script>
-    <%= @review.evaluation %>
+  <div class="d-inline-flex pl-2">
+    <div>
+      <%# 星評価 %>
+      <div class="relative-post-evaluation">
+        <span id="star-rate-<%= @review.id %>"></span>
+        <script>
+          $('#star-rate-<%= @review.id %>').raty({
+            size: 36,
+            starOff: "<%= asset_path('star-off.png') %>",
+            starOn: "<%= asset_path('star-on.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            half: true,
+            readOnly: true,
+            score: <%= @review.evaluation %>,
+          });
+        </script>
+        <%= @review.evaluation %>
+      </div>
+
+      <div class="font-weight-bold"><%= @review.review_title %></div>
+
+      <p class="pt-2">
+        <%= link_to customer_customer_path(@review.customer) do %>
+          <%= @review.customer.nickname %>
+        <% end %>さん
+        | 投稿日：<%= @review.created_at.strftime('%Y年%m月%d日') %>
+      </p>
+
+      <%= @review.review %>
+    </div>
   </div>
 
-  <div class="font-weight-bold"><%= @review.review_title %></div>
-
-  <p class="pt-2">
-    <%= link_to customer_customer_path(@review.customer) do %>
-      <%= @review.customer.nickname %>さん
-    <% end %>
-    | 投稿日：<%= @review.created_at.strftime('%Y年%m月%d日') %>
-    </p>
-
-  <%= @review.review %>
-
-  <div id="favorite_buttons_<%= @review.id %>">
-    <%= render "favorites/favorites", review: @review %>
-  </div>
+  <%#div id="favorite_buttons_<%= @review.id %>
+    <%#= render "favorites/favorites", review: @review %>
+  <%#/div>
 
 
   <%# コメント・いいね・ユーザー画像・ユーザーネーム追加する %>

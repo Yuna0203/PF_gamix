@@ -16,10 +16,19 @@
     <div class="d-inline-flex offset-1 font-weight-bold">対象年齢：<%= @game.target_age.target_age %></div>
   </div>
 
-  <p>価格：¥<%= @game.price.to_s(:delimited) %></p>
+  <div class="d-inline-block-flex mb-5">
+    <div class="d-inline-flex">
+      <p>価格：¥<%= @game.price.to_s(:delimited) %></p>
+    </div>
 
-  <i class="fas fa-pen"></i><%= link_to "レビューを書く", new_customer_game_review_path %>
+    <div class="offset-7 d-inline-flex">
+      <i class="fas fa-pen"></i><%= link_to "レビューを書く", new_customer_game_review_path(@game) %>
+    </div>
+  </div>
 
-  <%# レビュー追加 %>
+  <%# レビュー %>
+  <div>
+    <%= render partial: 'review', collection: @reviews_latest3 %>
+  </div>
 
 </div>

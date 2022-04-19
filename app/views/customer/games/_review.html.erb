@@ -1,0 +1,49 @@
+<div class="border-bottom mb-3">
+  <%# プロフィール画像 %>
+  <div class="d-inline-flex">
+    <%= image_tag review.customer.profile_image, size: "50x50" %>
+  </div>
+
+  <div class="d-inline-flex">
+    <div class="ml-2">
+      <div>
+        <%# user名を表示 %>
+        <%= link_to customer_customer_path(review.customer.id) do %>
+          <%= review.customer.nickname %>
+        <% end %>
+        さん
+      </div>
+      <div>
+        <%# 投稿時間を表示 %>
+        |<%= review.created_at.strftime('%Y年%m月%d日') %>|
+      </div>
+
+      <%# 星評価 %>
+      <div class="relative-post-evaluation d-inline-flex">
+        <span id="star-rate-<%= review.id %>"></span>
+        <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff: "<%= asset_path('star-off.png') %>",
+            starOn: "<%= asset_path('star-on.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            half: true,
+            readOnly: true,
+            score: <%= review.evaluation %>,
+          });
+        </script>
+        <%= @review.evaluation %>
+      </div>
+      <%# レビュータイトル %>
+      <div class="font-weight-bold d-inline-flex">
+        <%= link_to customer_game_review_path(@game.id) do %>
+          <%= review.review_title %>
+        <% end %>
+      </div>
+      <%# 改行が反映される形でコメントを表示 %>
+      <div>
+        <p><%= simple_format(h(review.review)) %></p>
+      </div>
+    </div>
+  </div>
+</div>
