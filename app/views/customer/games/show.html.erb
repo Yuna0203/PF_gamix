@@ -22,7 +22,9 @@
     </div>
 
     <div class="offset-7 d-inline-flex">
-      <i class="fas fa-pen"></i><%= link_to "レビューを書く", new_customer_game_review_path(@game) %>
+      <%= link_to new_customer_game_review_path(@game) do %>
+        <i class="fas fa-pen"></i>レビューを書く
+      <% end %>
     </div>
   </div>
 

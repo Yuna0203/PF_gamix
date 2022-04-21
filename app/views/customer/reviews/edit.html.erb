@@ -1,2 +1,32 @@
-<h1>Customer::Reviews#edit</h1>
-<p>Find me in app/views/customer/reviews/edit.html.erb</p>
+<div class="offset-4">
+  <%= form_with model: @review, url: customer_game_review_path(@review, game_id: @game.id), method: :patch, local: true do |f| %>
+    <!-- 星評価javascript -->
+    <div class="field" id="star">
+      <%= f.label :evaluation, "評価：" %>
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[evaluation]',
+          half: true,
+        });
+      </script>
+    </div>
+
+    <div class="my-4">
+      <%= f.label :レビュータイトル %><br>
+      <%= f.text_field :review_title, class: "w-50" %>
+    </div>
+
+    <div>
+      <%= f.label :本文 %><br>
+      <%= f.text_area :review, rows: "5", class: "w-50" %>
+    </div>
+
+    <div class="mt-4">
+      <%= f.submit "レビュー内容を更新", class: "btn btn-lg btn-outline-light w-50" %>
+    </div>
+  <% end %>
+</div>

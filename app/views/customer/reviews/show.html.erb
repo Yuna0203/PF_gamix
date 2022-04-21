@@ -1,4 +1,4 @@
-<div>
+<div class="offset-3">
   <div>
     <%= link_to customer_game_path(@game), class: "h3" do %>
       <%= @game.game_name %>
@@ -7,7 +7,7 @@
 
 
   <div class="pt-5 d-inline-flex">
-    <%= image_tag @review.customer.get_profile_image(100,100) %>
+    <%= image_tag @review.customer.get_profile_image(70,70) %>
   </div>
 
   <div class="d-inline-flex pl-2">
@@ -35,18 +35,70 @@
         <%= link_to customer_customer_path(@review.customer) do %>
           <%= @review.customer.nickname %>
         <% end %>さん
-        | 投稿日：<%= @review.created_at.strftime('%Y年%m月%d日') %>
+        ｜<%= @review.created_at.strftime('%Y年%m月%d日') %>
       </p>
 
-      <%= @review.review %>
+      <div>
+        <%= @review.review %>
+      </div>
+
+      <%# コメントへ %>
+      <div class="mt-3">
+        <%= link_to new_customer_game_review_comment_path(@game, @review) do %>
+          <i class="fas fa-solid fa-comment"></i>コメントする
+        <% end %>
+        （コメント件数：<%= @review.comments.count %>）
+      </div>
+
+      <%# 編集画面・削除へ %>
+      <% if @review.customer.id == current_customer.id %>
+        <div class="mt-5">
+          <%= link_to "レビューを編集", edit_customer_game_review_path(@review, game_id: @game.id), class: "btn btn-success" %>
+          <%= link_to "レビューを削除", customer_game_review_path(@review, game_id: @game.id), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger ml-3" %>
+        </div>
+      <% end %>
+
+      <%# コメント一覧 %>
+      <% @review.comments.each do |comment| %>
+        <div class="mt-5 pt-3 border-top">
+          <div class="d-inline-flex"><%= image_tag comment.customer.get_profile_image(70,70) %></div>
+
+          <div class="d-inline-flex ml-2">
+            <div>
+              <div>
+                <%= link_to customer_customer_path(comment.customer) do %>
+                  <%= comment.customer.nickname %>
+                <% end %>さん
+                ｜<%= comment.created_at.strftime('%Y年%m月%d日') %>
+              </div>
+
+              <div class="mt-3">
+                <%= comment.comment %>
+              </div>
+
+              <div class="mt-2">
+                <% if comment.customer.id == current_customer.id %>
+                  <%= link_to "コメントを削除", customer_game_review_comment_path(@game, @review, comment), method: :delete, data: {confirm: "削除しますか？"}, class: "text-danger" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+
     </div>
   </div>
+
+
+
+
 
   <%#div id="favorite_buttons_<%= @review.id %>
     <%#= render "favorites/favorites", review: @review %>
   <%#/div>
 
 
-  <%# コメント・いいね・ユーザー画像・ユーザーネーム追加する %>
+  <%# コメント・いいね・追加する %>
 
 </div>

@@ -13,11 +13,31 @@ class Customer::ReviewsController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:game_id])
     @review = Review.find(params[:id])
+    @game = Game.find(params[:game_id])
   end
 
   def edit
+    @game = Game.find(params[:game_id])
+    @review = Review.find(params[:id])
+    if @review.customer == current_customer
+      render "edit"
+    else
+      redirect_to customer_games_path
+    end
+  end
+
+  def update
+    review = Review.find(params[:id])
+    game = Game.find(params[:game_id])
+    review.update(review_params)
+    redirect_to customer_game_review_path(game.id, review)
+  end
+
+  def destroy
+    game = Game.find(params[:game_id])
+    Review.find_by(id: params[:id], game_id: params[:game_id]).destroy
+    redirect_to customer_game_path(game.id)
   end
 
   private

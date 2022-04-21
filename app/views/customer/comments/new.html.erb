@@ -1,2 +1,56 @@
-<h1>Customer::Comments#new</h1>
-<p>Find me in app/views/customer/comments/new.html.erb</p>
+<div class="offset-2">
+  <div>
+    <div>
+      <div class="pt-5 d-inline-flex">
+        <%= image_tag @review.customer.get_profile_image(100,100) %>
+      </div>
+
+
+      <div class="d-inline-flex pl-2">
+        <div>
+          <%# 星評価 %>
+          <div class="relative-post-evaluation">
+            <span id="star-rate-<%= @review.id %>"></span>
+            <script>
+              $('#star-rate-<%= @review.id %>').raty({
+                size: 36,
+                starOff: "<%= asset_path('star-off.png') %>",
+                starOn: "<%= asset_path('star-on.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                half: true,
+                readOnly: true,
+                score: <%= @review.evaluation %>,
+              });
+            </script>
+            <%= @review.evaluation %>
+          </div>
+
+          <div class="font-weight-bold"><%= @review.review_title %></div>
+
+          <p class="pt-2">
+            <%= link_to customer_customer_path(@review.customer) do %>
+              <%= @review.customer.nickname %>
+            <% end %>さん
+            | 投稿日：<%= @review.created_at.strftime('%Y年%m月%d日') %>
+          </p>
+
+          <div>
+            <%= @review.review %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-3 border-top">
+        <p class="font-weight-bold">レビューへのコメント</p>
+        <%= form_with model: @comment, url: customer_game_review_comments_path(@game, @review), method: :post do |f| %>
+          <div>
+            <%= f.text_area :comment, rows: "5", placeholder: "コメントをここに", class: "w-50" %>
+          </div>
+          <div class="mt-4">
+            <%= f.submit "コメントを送信", class: "btn btn-lg btn-outline-light w-25" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
