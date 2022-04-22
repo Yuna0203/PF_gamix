@@ -16,6 +16,16 @@
         <div class="container">
           <h2 class="navbar-brand"><i class="fas fa-solid fa-gamepad fa-lg"></i> Gamix</h2>
 
+          <div class="navbar search_form ml-auto">
+            <%= form_with url: customer_search_path, local: true, method: :get do |f| %>
+              <%= f.text_field :word, placeholder: "ゲームタイトルを入力" %>
+              <%= f.select :search, options_for_select([["部分一致","partial_match"],  ["前方一致","forward_match"],  ["後方一致","backword_match"], ["完全一致","perfect_match"]]) %>
+              <%= f.button :type => "submit", style: 'border-style: none;', class: "btn btn-primary" do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </div>
+
 
           <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %><!-- customerでログインされている -->

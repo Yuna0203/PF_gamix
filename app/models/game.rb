@@ -17,4 +17,18 @@ class Game < ApplicationRecord
     game_image
   end
 
+  #検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @game = Game.where("game_name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @game = Game.where("game_name LIKE?", "#{word}%")
+    elsif search == "backword_match"
+      @game = Game.where("game_name LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      @game = Game.where("game_name LIKE?", "%#{word}%")
+    else
+      @game = Game.all
+    end
+  end
 end

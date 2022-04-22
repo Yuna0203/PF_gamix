@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         resource :favorites, only: [:create, :destroy]
       end
     end
-    resources :searches, only: [:search]
+    get "search" => "searches#search"
   end
   root to: "customer/homes#top"
 
