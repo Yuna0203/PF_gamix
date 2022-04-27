@@ -54,8 +54,10 @@ ActiveRecord::Schema.define(version: 2022_04_21_173518) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "customer_id"
+    t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_bookmarks_on_customer_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -136,4 +138,5 @@ ActiveRecord::Schema.define(version: 2022_04_21_173518) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmarks", "customers"
 end

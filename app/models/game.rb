@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   belongs_to :genre
   belongs_to :target_age
   has_many :reviews, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   #ゲーム画像のカラム
   has_one_attached :game_image
@@ -30,5 +31,10 @@ class Game < ApplicationRecord
     else
       @game = Game.all
     end
+  end
+
+  #ブックマーク機能
+  def bookmarked_by?(customer)
+    bookmarks.where(customer_id: customer).exists?
   end
 end

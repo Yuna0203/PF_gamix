@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   }
 
   namespace :customer do
-    resources :bookmarks, only: [:index]
     resources :customers, only: [:show, :edit, :update]
     patch 'customers/quit' => 'customers#quit', as: 'quit'
     resources :games, only: [:index, :show, :new, :create] do
       resources :reviews, only: [:new, :show, :edit, :create, :update, :destroy] do
         resources :comments, only: [:new, :create, :destroy]
+        resource :bookmarks, only: [:index, :create, :destroy]
         resource :favorites, only: [:create, :destroy]
       end
     end
