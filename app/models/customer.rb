@@ -11,6 +11,10 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
+  #バリデーション
+  validates :self_introduction, length: { maximum: 1000 } #1000文字以内
+
+
   # プロフィール画像取得
   def get_profile_image(width, height)
     unless profile_image.attached?

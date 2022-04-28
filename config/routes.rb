@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
     get "search" => "searches#search"
   end
-  root to: "customer/homes#top"
+  root to: "customer/games#index"
 
 
   #管理者用

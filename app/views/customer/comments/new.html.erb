@@ -41,6 +41,18 @@
       </div>
 
       <div class="mt-5 pt-3 border-top">
+
+        <%# エラーメッセージ %>
+        <% if @comment.errors.any? %>
+          <div>
+            <ul style="color: red">
+              <% @comment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <p class="font-weight-bold">レビューへのコメント</p>
         <%= form_with model: @comment, url: customer_game_review_comments_path(@game, @review), method: :post do |f| %>
           <div>

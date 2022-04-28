@@ -1,4 +1,4 @@
-class Customer::BookmarkController < ApplicationController
+class Customer::BookmarksController < ApplicationController
   before_action :authenticate_customer!
 
   def index

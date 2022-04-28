@@ -14,7 +14,9 @@
     <header class="shadow mb-5">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <h2 class="navbar-brand"><i class="fas fa-solid fa-gamepad fa-lg"></i> Gamix</h2>
+          <%= link_to root_path, class: "text-white" do %>
+            <h2 class="navbar-brand"><i class="fas fa-solid fa-gamepad fa-lg"></i> Gamix</h2>
+          <% end %>
 
           <div class="navbar search_form ml-auto">
             <%= form_with url: customer_search_path, local: true, method: :get do |f| %>
@@ -32,7 +34,11 @@
               <li><%= link_to 'マイページ', customer_customer_path(current_customer), class: "btn btn-outline-light mr-2" %></li>
               <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-outline-light" %></li>
             <% elsif admin_signed_in? %><!-- adminでログインされている -->
-              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+              <li><%= link_to 'ゲーム一覧', admin_games_path, class:"text-white mr-2" %></li>
+              <li><%= link_to 'プラットフォーム一覧', admin_platforms_path, class:"text-white mr-2" %></li>
+              <li><%= link_to 'ジャンル一覧', admin_genres_path, class:"text-white mr-2" %></li>
+              <li><%= link_to '対象年齢一覧', admin_target_ages_path, class:"text-white mr-2" %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-outline-light" %></li>
             <% else %><!-- ログインされていない -->
               <li><%= link_to 'ログイン', customer_session_path, class: "btn btn-outline-light mr-2" %></li>
               <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-outline-light" %></li>

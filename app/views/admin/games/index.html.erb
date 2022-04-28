@@ -1,5 +1,10 @@
 <div>
   <div class="h2 mb-5">ゲーム一覧</div>
+
+  <div class="m-3">
+    <%= link_to 'ゲーム追加', new_admin_game_path, class: "btn btn-outline-light" %>
+  </div>
+
   <% @games.each do |game| %>
     <div class="d-inline-flex mb-3">
       <div>

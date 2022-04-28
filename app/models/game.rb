@@ -6,6 +6,11 @@ class Game < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  #バリデーション
+  validates :game_name, presence: true #入力必須
+  validates :game_introduction, length: { in: 1..1000 } #1~1000文字
+  validates :price, numericality: :only_integer #integerのみ
+
   #ゲーム画像のカラム
   has_one_attached :game_image
 

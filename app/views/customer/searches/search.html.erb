@@ -1,5 +1,6 @@
 <div>
   <div class="h2 mb-5">「<%= @word %>」の検索結果</div>
+
   <% @games.each do |game| %>
     <div class="d-inline-flex mb-3">
       <div>
@@ -13,4 +14,6 @@
       </div>
     </div>
   <% end %>
+
+  <div class="mt-3"><%= link_to "新しくゲームタイトルを追加する", new_customer_game_path %></div>
 </div>

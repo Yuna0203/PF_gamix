@@ -11,8 +11,14 @@ class Customer::CommentsController < ApplicationController
     comment = current_customer.comments.new(comment_params)
     comment.game_id = game.id
     comment.review_id = review.id
-    comment.save
-    redirect_to customer_game_review_path(game, review)
+    if comment.save
+      redirect_to customer_game_review_path(game, review)
+    else
+      @game = Game.find(params[:game_id])
+      @review = Review.find(params[:review_id])
+      @comment = Comment.new
+      render :new
+    end
   end
 
   def destroy

@@ -1,5 +1,17 @@
 <div class="offset-4">
   <h4 class="pb-2"><%= @game.game_name %>のレビューを書く</h4>
+
+  <%# エラーメッセージ %>
+  <% if @review.errors.any? %>
+    <div>
+      <ul style="color: red">
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= form_with  model: [@game, @review], url: customer_game_reviews_path, method: :post, local: true do |f| %>
 
     <!-- 評価javascript -->

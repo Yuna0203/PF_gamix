@@ -8,8 +8,12 @@ class Customer::GamesController < ApplicationController
 
   def create
     game = Game.new(game_params)
-    game.save
-    redirect_to customer_game_path(game.id)
+    if game.save
+      redirect_to customer_game_path(game.id)
+    else
+      @game = Game.new
+      render :new
+    end
   end
 
   def show

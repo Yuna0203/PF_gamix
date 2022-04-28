@@ -8,8 +8,13 @@ class Customer::ReviewsController < ApplicationController
     game = Game.find(params[:game_id])
     review = current_customer.reviews.new(review_params)
     review.game_id = game.id
-    review.save
-    redirect_to customer_game_review_path(game.id, review.id)
+    if review.save
+      redirect_to customer_game_review_path(game.id, review.id)
+    else
+      @game = Game.find(params[:game_id])
+      @review = Review.new
+      render 'new'
+    end
   end
 
   def show
@@ -30,8 +35,13 @@ class Customer::ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     game = Game.find(params[:game_id])
-    review.update(review_params)
-    redirect_to customer_game_review_path(game.id, review)
+    if review.update(review_params)
+      redirect_to customer_game_review_path(game.id, review)
+    else
+      @game = Game.find(params[:game_id])
+      @review = Review.find(params[:id])
+      render :edit
+    end
   end
 
   def destroy
